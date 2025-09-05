@@ -30,4 +30,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: Jellyfin.wgt
-        path: "$(pwd)/output/jellyfin-tizen-build.tar"
+        path: output/jellyfin-tizen-build.tar
