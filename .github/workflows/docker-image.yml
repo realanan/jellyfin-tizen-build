@@ -26,8 +26,11 @@ jobs:
     - name: Run build
       run: docker run --ulimit nofile=65536:65536 -v "$(pwd)/output":/output jellyfin-tizen-build
 
+    - name: Save image
+      run: docker save -o "$(pwd)/output/jellyfin-tizen-build.tar" jellyfin-tizen-build
+
     - name: Upload output
       uses: actions/upload-artifact@v4
       with:
         name: Jellyfin.wgt
-        path: "$(pwd)/output/Jellyfin.wgt"
+        path: "$(pwd)/output/jellyfin-tizen-build.tar"
