@@ -1,7 +1,7 @@
 ## Build jellyfin-web
 FROM node:20
 
-ENV JELLYFIN_WEB_URL=https://github.com/jellyfin/jellyfin-web/archive/refs/tags/v10.8.11.tar.gz
+ENV JELLYFIN_WEB_URL=https://github.com/jellyfin/jellyfin-web/archive/refs/tags/v10.10.7.tar.gz
 ENV JELLYFIN_TIZEN_URL=https://github.com/jellyfin/jellyfin-tizen/archive/refs/heads/master.tar.gz
 
 WORKDIR /jellyfin
