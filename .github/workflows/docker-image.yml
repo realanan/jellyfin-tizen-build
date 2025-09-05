@@ -17,3 +17,12 @@ jobs:
     - name: Build the Docker image
       run: docker build --ulimit nofile=65536:65536 --progress=plain --no-cache -t jellyfin-tizen-build .
       
+    - name: Make output dir
+      run: mkdir -p output
+      
+    - name: Touch test file
+      run: touch output/.test || sudo chown $USER:$USER output
+      
+    - name: Run build
+      run: docker run --ulimit nofile=65536:65536 -v "$(pwd)/output":/output -it jellyfin-tizen-build
+      
