@@ -21,7 +21,7 @@ RUN curl -sL ${JELLYFIN_WEB_URL} | tar -xz && \
 ## Build jellyfin app
 FROM eclipse-temurin:11
 
-ARG TIZEN_STUDIO_VER=5.1
+ARG TIZEN_STUDIO_VER=6.1
 ENV TIZEN_STUDIO_URL=https://download.tizen.org/sdk/Installer/tizen-studio_${TIZEN_STUDIO_VER}/web-cli_Tizen_Studio_${TIZEN_STUDIO_VER}_ubuntu-64.bin
 ENV TIZEN_STUDIO_FILE=web-cli_Tizen_Studio_${TIZEN_STUDIO_VER}_ubuntu-64.bin
 
