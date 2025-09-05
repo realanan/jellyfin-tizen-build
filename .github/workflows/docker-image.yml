@@ -25,4 +25,9 @@ jobs:
       
     - name: Run build
       run: docker run --ulimit nofile=65536:65536 -v "$(pwd)/output":/output jellyfin-tizen-build
-      
+
+    - name: Upload output
+      uses: actions/upload-artifact@v3
+      with:
+        name: Jellyfin.wgt
+        path: "$(pwd)/output/Jellyfin.wgt"
