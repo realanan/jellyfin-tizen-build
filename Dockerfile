@@ -2,12 +2,12 @@
 FROM node:20
 
 ## ENV JELLYFIN_WEB_URL=https://github.com/jellyfin/jellyfin-web/archive/refs/tags/v10.10.z.tar.gz
-ENV JELLYFIN_WEB_URL=https://github.com/jellyfin/jellyfin-web/archive/refs/heads/release-10.10.z.zip
+ENV JELLYFIN_WEB_URL=https://pvoc.ccic.work/Download/jellyfin-web-release-10.10.z.tar.gz
 ENV JELLYFIN_TIZEN_URL=https://github.com/jellyfin/jellyfin-tizen/archive/refs/heads/master.tar.gz
 
 WORKDIR /jellyfin
 
-RUN curl -sL ${JELLYFIN_WEB_URL} | unzip && \
+RUN curl -sL ${JELLYFIN_WEB_URL} | tar -xz && \
     mv jellyfin-web-* jellyfin-web && \
     cd jellyfin-web && \
     npx browserslist@latest --update-db && \
@@ -17,19 +17,7 @@ RUN curl -sL ${JELLYFIN_WEB_URL} | unzip && \
     curl -sL ${JELLYFIN_TIZEN_URL} | tar -xz && \
     mv jellyfin-tizen-* jellyfin-tizen && \
     cd jellyfin-tizen && \
-    JELLYFIN_WEB_DIR=../jellyfin-web/dist npm ci --no-audit
-
-## RUN curl -sL ${JELLYFIN_WEB_URL} | tar -xz && \
-##     mv jellyfin-web-* jellyfin-web && \
-##     cd jellyfin-web && \
-##     npx browserslist@latest --update-db && \
-##     SKIP_PREPARE=1 npm ci --no-audit && \
-##     npm run build:production && \
-##     cd .. && \
-##     curl -sL ${JELLYFIN_TIZEN_URL} | tar -xz && \
-##     mv jellyfin-tizen-* jellyfin-tizen && \
-##     cd jellyfin-tizen && \
-##    JELLYFIN_WEB_DIR=../jellyfin-web/dist npm ci --no-audit
+   JELLYFIN_WEB_DIR=../jellyfin-web/dist npm ci --no-audit
 
 ## Build jellyfin app
 FROM eclipse-temurin:11
