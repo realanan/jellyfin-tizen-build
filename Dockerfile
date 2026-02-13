@@ -7,7 +7,7 @@ ENV JELLYFIN_TIZEN_URL=https://github.com/jellyfin/jellyfin-tizen/archive/refs/h
 
 WORKDIR /jellyfin
 
-RUN curl -sL ${JELLYFIN_WEB_URL} | tar -xz && \
+RUN curl -sL ${JELLYFIN_WEB_URL} | unzip && \
     mv jellyfin-web-* jellyfin-web && \
     cd jellyfin-web && \
     npx browserslist@latest --update-db && \
@@ -18,6 +18,18 @@ RUN curl -sL ${JELLYFIN_WEB_URL} | tar -xz && \
     mv jellyfin-tizen-* jellyfin-tizen && \
     cd jellyfin-tizen && \
     JELLYFIN_WEB_DIR=../jellyfin-web/dist npm ci --no-audit
+
+## RUN curl -sL ${JELLYFIN_WEB_URL} | tar -xz && \
+##     mv jellyfin-web-* jellyfin-web && \
+##     cd jellyfin-web && \
+##     npx browserslist@latest --update-db && \
+##     SKIP_PREPARE=1 npm ci --no-audit && \
+##     npm run build:production && \
+##     cd .. && \
+##     curl -sL ${JELLYFIN_TIZEN_URL} | tar -xz && \
+##     mv jellyfin-tizen-* jellyfin-tizen && \
+##     cd jellyfin-tizen && \
+##    JELLYFIN_WEB_DIR=../jellyfin-web/dist npm ci --no-audit
 
 ## Build jellyfin app
 FROM eclipse-temurin:11
