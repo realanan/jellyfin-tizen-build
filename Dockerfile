@@ -1,7 +1,8 @@
 ## Build jellyfin-web
 FROM node:20
 
-ENV JELLYFIN_WEB_URL=https://github.com/jellyfin/jellyfin-web/archive/refs/tags/v10.10.7.tar.gz
+## ENV JELLYFIN_WEB_URL=https://github.com/jellyfin/jellyfin-web/archive/refs/tags/v10.10.z.tar.gz
+ENV JELLYFIN_WEB_URL=https://github.com/jellyfin/jellyfin-web/archive/refs/heads/release-10.10.z.zip
 ENV JELLYFIN_TIZEN_URL=https://github.com/jellyfin/jellyfin-tizen/archive/refs/heads/master.tar.gz
 
 WORKDIR /jellyfin
@@ -21,7 +22,7 @@ RUN curl -sL ${JELLYFIN_WEB_URL} | tar -xz && \
 ## Build jellyfin app
 FROM eclipse-temurin:11
 
-ARG TIZEN_STUDIO_VER=5.6
+ARG TIZEN_STUDIO_VER=6.1
 ENV TIZEN_STUDIO_URL=https://download.tizen.org/sdk/Installer/tizen-studio_${TIZEN_STUDIO_VER}/web-cli_Tizen_Studio_${TIZEN_STUDIO_VER}_ubuntu-64.bin
 ENV TIZEN_STUDIO_FILE=web-cli_Tizen_Studio_${TIZEN_STUDIO_VER}_ubuntu-64.bin
 
